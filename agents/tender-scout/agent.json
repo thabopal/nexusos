@@ -1,0 +1,41 @@
+{
+  "apiVersion": "nexusos/v1alpha1",
+  "kind": "Agent",
+  "metadata": {
+    "id": "tender-scout",
+    "name": "Tender Scout",
+    "version": "0.1.0",
+    "description": "Discovers, filters, scores and reports tender opportunities relevant to NexusHub Solutions."
+  },
+  "spec": {
+    "role": "business-development.discovery",
+    "runtime": {
+      "adapter": "hermes"
+    },
+    "autonomyTier": "T1",
+    "capabilities": [
+      "tenders.search",
+      "tenders.read",
+      "opportunities.score",
+      "discord.report"
+    ],
+    "dataScopes": [
+      "public-tender-sources",
+      "nexushub-capability-profile"
+    ],
+    "channels": [
+      "discord"
+    ],
+    "prohibitedActions": [
+      "submit-tender",
+      "accept-contract",
+      "make-payment",
+      "represent-nexushub-to-buyer"
+    ],
+    "requiresHumanApprovalFor": [
+      "external-submission",
+      "financial-commitment",
+      "client-or-buyer-communication"
+    ]
+  }
+}
