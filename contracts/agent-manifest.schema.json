@@ -1,0 +1,100 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "NexusOS Agent Manifest",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "apiVersion",
+    "kind",
+    "metadata",
+    "spec"
+  ],
+  "properties": {
+    "apiVersion": {
+      "const": "nexusos/v1alpha1"
+    },
+    "kind": {
+      "const": "Agent"
+    },
+    "metadata": {
+      "type": "object",
+      "required": [
+        "id",
+        "name",
+        "version"
+      ],
+      "properties": {
+        "id": {
+          "type": "string",
+          "pattern": "^[a-z0-9-]+$"
+        },
+        "name": {
+          "type": "string"
+        },
+        "version": {
+          "type": "string"
+        }
+      },
+      "additionalProperties": true
+    },
+    "spec": {
+      "type": "object",
+      "required": [
+        "role",
+        "runtime",
+        "autonomyTier",
+        "capabilities",
+        "prohibitedActions"
+      ],
+      "properties": {
+        "role": {
+          "type": "string"
+        },
+        "runtime": {
+          "type": "object"
+        },
+        "autonomyTier": {
+          "enum": [
+            "T0",
+            "T1",
+            "T2",
+            "T3"
+          ]
+        },
+        "capabilities": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "uniqueItems": true
+        },
+        "dataScopes": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "channels": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "prohibitedActions": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "uniqueItems": true
+        },
+        "requiresHumanApprovalFor": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      },
+      "additionalProperties": false
+    }
+  }
+}
