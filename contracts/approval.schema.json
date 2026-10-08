@@ -1,0 +1,68 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "NexusOS Approval Request",
+  "type": "object",
+  "required": [
+    "id",
+    "jobId",
+    "requestedByAgent",
+    "action",
+    "riskTier",
+    "status",
+    "createdAt"
+  ],
+  "properties": {
+    "id": {
+      "type": "string"
+    },
+    "jobId": {
+      "type": "string"
+    },
+    "requestedByAgent": {
+      "type": "string"
+    },
+    "action": {
+      "type": "string"
+    },
+    "riskTier": {
+      "enum": [
+        "T1",
+        "T2",
+        "T3"
+      ]
+    },
+    "status": {
+      "enum": [
+        "pending",
+        "approved",
+        "rejected",
+        "expired"
+      ]
+    },
+    "reason": {
+      "type": "string"
+    },
+    "evidence": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "approvedBy": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "createdAt": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "decidedAt": {
+      "type": [
+        "string",
+        "null"
+      ]
+    }
+  }
+}
