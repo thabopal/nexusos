@@ -2,7 +2,6 @@ import json
 from pathlib import Path
 
 import pytest
-
 from nexusos.audit import JsonlAuditLog
 from nexusos.control_plane import ControlPlane
 from nexusos.policy import PolicyEngine
@@ -56,4 +55,8 @@ def test_audit_log_is_jsonl(control_plane):
     control_plane.authorize(job, "discord.report")
     lines = control_plane.audit.path.read_text().splitlines()
     assert len(lines) == 3
-    assert [json.loads(line)["eventType"] for line in lines] == ["job.created", "job.assigned", "policy.evaluated"]
+    assert [json.loads(line)["eventType"] for line in lines] == [
+        "job.created",
+        "job.assigned",
+        "policy.evaluated",
+    ]
